@@ -1,0 +1,154 @@
+Hello again!
+
+Title: Lesson 3 Scripts
+
+Lesson Overview:
+
+We will make some basic scripts to run in bash.
+A script is a program or sequence of instructions. In this case they will be interpreted by bash and run in the bash shell.
+The same as in real life where a script read by an actor tells the actor what to say or do.
+Anything you can run on the command line (like we did on previous lessons) can be put into a script and run to do exactly the same thing.
+Note: Running a file is the same as executing a file.
+
+Additional online resources:
+https://linuxconfig.org/bash-scripting-tutorial-for-beginners
+https://ryanstutorials.net/bash-scripting-tutorial/
+additional tar command resources -> https://www.tecmint.com/18-tar-command-examples-in-linux/
+variables -> https://linuxhint.com/variables-bash-programming/
+deep dive --> https://www.tldp.org/LDP/abs/html/
+
+Setting up our lesson:
+Make a directory on the desktop of which to store the files we make in this lesson in.
+AVOID USING THE GUI TO DO THIS.
+Refresher: 
+'cd desktop' from the root directory into the desktop. 
+'mkdir lesson-3-scripts' to make a lesson directory. 
+Then 'cd lesson-3-scripts' and hit return to move into the directory for the lesson.
+
+Lesson start:
+
+1. We should be in the lesson directory as we start it should look like this:
+owner@computername ~/desktop/lesson-3-scripts
+From here we need to make a script file. This is different to the .txt files we made in the previous lesson.
+To make this file type: 'touch firstscript.sh' and return.
+Then open the file in a text editor. In my case I go 'code firstscript.sh' and it opens in VS Code.
+2. Now it is time to put some commands in the script file and run it. 
+The 
+#! is a shebang. #!/bin/bash means; use the interpreter located in the bin directory.
+We are going to use the 'echo' command. The echo command calls-out/prints-out what is written after it.
+From the first line in the new file and then line by line, (after typing it out press ctr s to save the file);
+#!/bin/bash
+echo This is my first executable bash file!
+3.switch to the bash command terminal and run the file by typing: 
+'./firstscript.sh'
+4.You should see some output in the terminal window (directly under the command you just typed to execute the code) as below:
+This is my first executable bash file!
+5. Open the firstscript.sh file again and below the line with echo command type:
+date
+cal
+6. Run the code same as step 3
+7. Something slightly more tricky. Variables.
+You might or might not remember variables from math lessons. Don't worry they are not tricky, they are objects we assign values to.
+eg. A=10, B=2
+so if we multiply A by B we would get 20.
+This is a very simplistic view of variables but we will cover other types and cases later.
+Create a new script file (scriptvariables.sh) and begin editing it, making sure to include the first line of the script as #!/bin/bash. 
+Under the first line of the new script add:
+variableA=10
+variableB=2
+echo $[$variableA * $variableB]
+8. Something slightly more entertaining. 
+Including a new data type called strings noted by the use of "" marks eg greeting="Welcome"
+Make another script file and call it scriptgreeting.sh and add the below to it then run it as in previous examples. (don't forget the shebang on first line)
+
+greeting="Welcome"
+user=$(whoami)
+day=$(date +%A)
+
+echo "$greeting back $user! Today is $day, which is the best day of the entire week!"
+echo "Your Bash shell version is: $BASH_VERSION. Enjoy!"
+
+9. Bash scripts are desirable to use as they take out the manual work of typing the same script to run every day in terminal.
+We can just run the script we created each day instead. (there are programs which regularly run bash scripts so you don't even have to execute the script yourself!).
+Once such script is a back up script used to compress a directory and its files into a .tar.gz file ready for storing somewhere safe.
+Inside directory lesson-3 create a directory called backmeup and inside that directory make a file called plzbackmeup.txt.
+Now move back out into the lesson-3 directory and make a new .sh file called scripttar. Inside it type:
+
+#!/bin/bash
+
+#variable name of backed up file
+var1=backmeupcopy.tar.gz
+
+#variable name of directory to back up
+var2=backmeup
+
+tar -cvf $var1 $var2
+
+Note: (don't include this note in the .sh file just everything up to the line above this note)
+The #texthere in a .sh file is a way of having a comment in the .sh file which is not executed, such notes are useful to the programmer looking at the file.
+
+10. In the bash window type 'scripttar.sh' to run the back-up script we just made then 'ls'. You should see there is a backmeupcopy.tar file in the directory now.
+11. Time to make an intentional 'mistake'. remove (hint: rm -r) the directory backmeup.
+12. How to unzip the backmeupcopy.tar file so we can recover the deleted file? 
+In the command window in the same directory as the .tar file type 'tar -xvf backmeupcopy.tar' and press return.
+Type 'ls' and you should now see that the deleted folder has returned!
+
+13. You can now practice making a copy of and compressing a directory (-cvf) deleting the uncompressed original (rm -r) and then uncompressing the .tar file (-xvf) and repeating this process.
+
+TIME TO GET COMPLICATED BUT NOT TOO COMPLICATED
+
+14. Lets build a tree directory structure by putting the below in a .sh file then executing it.
+
+mkdir branch-1 branch-2 branch-3
+cd branch-1
+mkdir twig-1 twig-2
+cd twig-1
+touch leaf-1.txt
+cd ../twig-2
+touch leaf-2.txt
+cd ../../branch-2
+mkdir twig-3 twig-4
+cd twig-3
+touch leaf-3.txt
+cd ../twig-4
+touch leaf-4.txt
+cd ../../branch-3
+mkdir twig-5 twig-6
+cd twig-5
+touch leaf-5.txt
+cd ../twig-6
+touch leaf-6.txt
+cd ../../
+echo tree structure is now built
+
+Note: Now run the file and then 'ls' to see the branches or 'ls -R' to see all the files and directories.
+
+Cool eh.
+
+15. DRY or Don't Repeat Yourself is a programming acronym which is used by programs to identify when they are making things more complicated than they need to be.
+In the case above we repeat the steps to make the branches twigs and leaves. Lets see if we can use some shorter method.
+
+We can do this using the below code:
+
+#!/bin/bash
+mkdir -p auto-tree/{branch-1,branch-2,branch-3}/{twig-1,twig-2} | touch auto-tree/{branch-1,branch-2,branch-3}/{twig-1,twig-2}/leaf.txt
+
+Try it out. Next to optimize further using variables and a loop. This way we don't have to list branch-1, branch-2 it will add the number on the end of the branch.
+
+We want to just have branch-n, twig-n, and leaf-n in the code and some variable to make the correct number of directories while renaming the 'n' to the correct number.
+eg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

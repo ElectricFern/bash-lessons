@@ -1,0 +1,25 @@
+Title: Lesson 2 Branching Out
+
+
+Basic Overview of lesson:
+
+In this lesson we are going to repeat what we learnt in lesson 1 but using a different structure and visualization.
+Using Trees!
+This time we are going to make a project base directory called trunk and make some directories off it called big-branch-1 to big-branch-4
+Each big-branch will have two small-branch and each small-branch will have ten leaf-n.txt files in it where n is between 1-10.
+Make some insect.txt files and move them around the branches
+Add and remove branches (directories), leaves and insects (files) from the tree.
+
+New commands!
+
+less : use to view the contents of a file with a specified name
+head/tails : use to see the first ten lines of a file printed out in the command window
+pwd: Displays the name of the working directory
+history: Displays a list of the last commands you have run
+help : Using help followed by a command lists what the command is capable of. For a shorter description use 'help -d'.
+cal : brings up a calendar. 
+date : brings up the current date and time.
+
+
+
+

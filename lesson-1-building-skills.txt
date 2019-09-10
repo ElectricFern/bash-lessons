@@ -1,0 +1,177 @@
+Title: Lesson 1 Building skills
+
+
+Basic Overview of lesson:
+
+We are going to (in different ways):
+    - make/delete some directories in bash
+    - make/delete some files in bash
+    - move between directories in bash
+    - add information to an empty file in bash
+    - open a file into the vs code editor from bash 
+    (from the built in vs code bash and the bash terminal)
+
+Shortcut keys in bash:
+Keyboard shortcuts : Description
+Up Arrow & Down Arrow :	Previously used commands in the current session.
+Ctrl-A	: Move the cursor to beginning of the current line.
+Ctrl-E	: Move the cursor to the end of the current line.
+Ctrl-U	: Delete all the line from the start of the line to the current cursor position.
+Ctrl-H	: Same as backspace.
+Ctrl-K	: Delete all the line from the current cursor position.
+Ctrl-W	: Delete the word before the current cursor position.
+Ctrl-D	: On a blank line is the same as the exit command. Otherwise, it deletes the character in front of the cursor.
+Ctrl-C	: Stop the current running command.
+Ctrl-Shift-C : Copy
+Ctrl-Shift-V or Shift-Insert : Paste
+Tab : Command auto-completion.
+
+Commands index: 
+Note: For the commands index here don't include anything in '',"",(), and replace any dir within a name and filenames with your own files and dirs.
+ls (list all the files in the current directory),
+cd somedir (move from current dir to somedir),
+cd somedir/someotherdir (move from the current directory past somedir and into someotherdir), 
+cd ../somedir (move from someotherdir back one dir into somedir),  
+mkdir
+rm, rm -r 
+touch
+cat
+tac
+mv
+
+Detailed Overview of on:
+
+Our project will visually represent a building which has:
+    - ground floor
+    - first floor
+        - room 1
+            - chair 1
+            - desk 1
+        - room 2
+            - chair 2
+            - desk 2
+    - second floor
+        - room 3
+            - chair 3
+            - desk 3
+        - room 4
+            - chair 4
+            - desk 4
+    - third floor
+        - room 5
+            - chair 5
+            - desk 5
+        - room 6
+            - chair 6
+            - desk 6
+
+The floors and rooms are directories
+The chairs and desks are .txt files
+
+First we will make the floors and move between them.
+Second we will make the rooms on each floor as we practice moving between them.
+Third we will make all the chair and desk files on the ground floor directory.
+Fourth we will move all the files into the correct directories as above.
+Fifth we will open a desk file in an editing program and add some items.
+Sixth we will join some of the items in desks together appending and copying the content.
+Seventh we will remove the chairs and desks from some rooms.
+Eighth we will remove some rooms and their contents.
+Ninth we will remove an empty floor.
+Tenth we will remove floor 2 and all of its contents in one go.
+
+
+Setting up the project:
+
+You will need a txt editor installed, I have used visual studio code. 
+Later on when I launch VSCode using command 'code' if you are using a different text editor you will need to know the application start command for the editor you are using.
+
+Note: A directory is a location on a computers hard-drive. A directory is represented on an operating system graphical user interface (GUI) as a folder which holds files.
+
+    -To make a directory in bash we are going to create the directory for the rest of the lesson on the desktop. 
+    When we open the command prompt it usually starts at the computers root directory.
+    The root directory is the directory of which all other directories (on the hard-drive you are in) branch off signified by the tilda ~ after the computers name.
+    It will look like: owner@Computername ~ 
+    - open bash command window. using the shortcut keys ????
+    - Now we are going to move from the computers root directory onto the desktop directory. The command for change directory is 'cd. 
+    Depending on what we type that follows cd will change how we change directory. 'cd ~' moves us back to the root directory from anywhere.
+    - type 'cd desktop' and press the return key. This command will change our current directory from the root to the desktop directory. 
+    - type 'ls' . Lowercase L. This command lists all of the current folders and files we have on our desktop.
+    Because there are lots or even a few other items on the desktop we are going to make our own directory to start the project in to keep things tidy.
+    - Type 'mkdir building-skills' and press return.
+    - Type 'cd building-skills' and press return. You should now see that the directory we are in is now owner@computername ~/Desktop/building-skills.
+    Congratulations you have just created, named, and moved into your own directory using commands.
+
+
+Project Start:
+
+1. type 'mkdir ground-floor' press return.
+2. repeat this process for directories called floor-1, floor-2, floor-3. 
+Explore these new directories by using the cd command to move into and out of... oops, wait a second I haven't shown you how to go back/out of a directory.
+type 'cd floor-3' and press return. After this you should see you current directory change to: owner@computername ~/Desktop/building-skills/floor-3
+To move back to the building-skills directory type 'cd ../' you should now see: owner@computername ~/Desktop/building-skills
+3. We are now going to make rooms in each of the directories.
+Move into the floor-1 directory and type 'mkdir room-1' and press return
+Then type 'mkdir room-2' and press return.
+4. Move into the floor-2 directory by going back one by typing 'cd ../' and return, then into floor-2 type 'cd floor-2' and press return.
+HOLD ON THIS ALL SEEMS REPETITIVE SURELY THERE IS AN EASIER WAY --> There is!
+5. To make the rooms on floor -2 we are going to do something a bit different.
+Type 'mkdir room-3 room-4' and press return. This makes foom-3 and room-4 inside the floor-2 directory in one command.
+6. This time when we change directory, rather than using two commands to move back into the project directory and then into the directory floor-3 we are going to do it in one command.
+Type 'cd ../floor-3' This is broken down into; 'cd' change directory, '../' move back one directory, 'name-of-another-directory-to-move-into'.
+Now we have moved out one and in one directory using one command.
+7. To tidy up our terminal type 'clear'. Feel free to use this command as often as you need.
+8. Rather than make the rest of the rooms individually make them the same as in step 5 but call them room-5- and room-6, no rooms on ground-floor just floors 1-3.
+9. Change directory back to the project folder and type 'ls -R' to see all of the "floors" and "rooms" of the "building" listed.
+SEEMS A BIT EMPTY TO ME
+10. Lets make some empty files to represent objects in our rooms.
+Type 'touch desk.txt desk.txt
+The touch command can be used to make empty files.
+11. type the name of your code editing software followed by desk.txt. I type 'code desk.txt'
+This will open up visual studio code editor with the current empty file selected.
+Hold tab button and then tap shift button a few times until it is highlighting the tab which has the filename up the top. Press return.
+You should now be inside the file and you can write some items into the desk. I did pens, paper, ruler, caddie, calculator, file.
+Hold control and tap S then release to save the file. 
+Press control ~ and visual studio code will open up its own built in command prompt for you to use. Make sure bash is selected in the settings, you may have to install an extension which enables bash in the terminal.
+If you don't like using the VS code terminal you can shortcut by holding down alt and tapping tab to move between open programs and release on the terminal.
+12. Now that we are back from our wee tangent we can make some more objects but rather than use 'touch' to make each one we are going to duplicate and move them in one command using cp.
+Type 'cp desk.txt desk-1.txt/floor-1/room-1' and return
+Type 'cp chair.tx chair-1.txt/floor-1/room-1' and return
+Move into room-1 and ls to check the copy and move command worked.
+Note: 'cp * /floor-1/room-1' works also and moves all files at once. The * means 'all'
+      'cp *.txt /floor-1/room-1' copies all .txt files at once.
+13. After you have done step 12 go ahead and copy a desk and chair into each of the available rooms (including again into room-1). 
+14. Move to the project directory and type 'ls -R' to see all the files and directories we just made.
+15. change directory into room-1 and then list the contents (using 'ls' not 'ls -R').
+16. Using the cat command it's now time to take all of the items from desk-1 and copy and add them to desk-2.
+Type 'cat desk-1' and press return this will show the contents of the file in line by line format (not so good for files with lots of text).
+Type 'cat desk-1 >> desk-2' and press return. This will append the contents of desk-1 to desk-2.
+Type 'cat desk-2' to see the contents have been appended (joined).
+Note you can use 'tac desk-2' to display the contents in reverse order.
+17. Now we are going to make a third empty desk and then copy the content from desk-1 into it.
+Type 'touch desk-1a.txt' and return to make an empty desk file.
+Type 'cat desk-1.txt > desk-1a.txt' this copies the content over.
+Check desk-1a to see if the contents have been coped over.
+TO CLUTTERED
+18. It is too cluttered and is now time to move one of these desks out of the building and one onto the ground floor.
+Type 'mv desk-1a.txt ../' and return, this moves the desk back/out one directory it is now in the floor-1 directory so now move it the same again out into the project folder.
+Type 'mv desk-1.txt ../../' and return, this moves the desk out one directory and then another in one command and it is now in the project folder.
+Type 'mv desk-2.txt ../ground-floor' and return, then 'cd ../ground-floor' and 'ls' to check the move worked.
+DESTROY
+19. It is now time to delete some things.
+Move into a room with a desk in it.
+Type 'rm desk-6.txt' and return.
+Type 'ls' notice it is now gone.
+20. Rather than manually delete each file from each room lets delete a whole directory. You can only use rm on an empty directory. 
+You can use 'rm -r' to recursively delete the files and sub-directories in the directory then the directory itself.
+Move to the floor-3 directory.
+Type 'rm -r room-6' and return then 'ls', notice room-6 and all of its contents (desk-6.txt and chair-6.txt) are now gone. Do the same for room-5.
+Move out to the project folder directory and type 'rm floor-3' and then 'ls' to check it is gone. This will work because the directory is now empty.
+Type 'rm -r floor-2' and then ls to see it is gone now too. We deleted the files and sub-directories room-3 and room-4.
+COMPLETE!!!
+
+To quit the command prompt type 'exit' and press return.
+
+
+
+
+ 
